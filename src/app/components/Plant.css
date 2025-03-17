@@ -1,0 +1,16 @@
+.plant-container{
+    position: relative;
+    display: inline-block;
+}
+
+.plant {
+    display: block;
+    position: relative; /* Make sure it's positioned */
+    z-index: 2; /* Higher than tomatoes */
+    pointer-events: none;
+}
+
+.tomato{
+    position: absolute;
+    z-index: 0;
+}

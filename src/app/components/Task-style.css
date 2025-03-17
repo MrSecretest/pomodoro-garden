@@ -1,0 +1,67 @@
+::selection {
+    background-color: hsl(0, 54%, 75%);
+    color: #000;
+}
+
+
+.task-container{
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    border: 2px dashed #625050;
+    border-radius: 10px;
+    display: flex;
+    padding-inline: 10px;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.3s ease-in-out, scale 0.2s ease-in-out;
+}
+
+.task-container:hover{
+    border-color: hsl(0, 10%, 55%);
+}
+
+.task-container:active{
+    scale:1.05;
+}
+
+.task-container > input, .task-container > p{
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    color: hsl(0, 0%, 100%);
+    font-size: 14px;
+    width: 250px;
+    height: 35px;
+    overflow-x: scroll;
+}
+
+
+
+.task-container > input:focus {
+    outline: none;
+    border: none;
+}
+
+.task-input-container{
+    border: 2px solid hsl(0, 10%, 55%);
+}
+
+.task-finished-container{
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    border: 2px dashed #62505072;
+    border-radius: 10px;
+    display: flex;
+    padding-inline: 10px;
+    align-items: center;
+    justify-content: space-between;
+    scale: 1;
+}
+
+.task-finished-container p {
+    text-decoration: line-through;
+    color: hsla(0, 0%, 100%, 0.489);
+}

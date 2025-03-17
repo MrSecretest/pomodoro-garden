@@ -1,0 +1,46 @@
+.button-container{
+    background-color: #C98383;
+    width: fit-content;
+    padding-block: 15px;
+    padding-inline: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.button-container > p{
+    font-size: 18px;
+    color: black;
+    user-select: none;
+    -moz-user-select: none;
+    cursor: pointer;
+}
+
+.button-container:hover{
+    background-color: hsl(0, 39%, 45%);
+}
+
+.task-button{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px hsl(0, 10%, 65%) solid;
+    user-select: none;
+    -moz-user-select: none;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+}
+
+.task-button:hover{
+    background-color: hsl(0, 10%, 65%);
+    border: 2px hsl(0, 10%, 65%) solid;
+    color: black;
+}
+
+.task-button:active{
+    scale: 0.95;
+}

@@ -1,0 +1,130 @@
+:root{
+    --bg-color: #2B0D0D;
+    --element-color: #B5B1B1;
+    --circle-color: #B5B1B1;
+    --primary-text-color: #FFFFFF;
+    --secondary-text-color: #C8C8C8;
+    --red-text-color: #EE4744;
+}
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+
+.karla-text {
+    font-family: "Karla", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; 
+    font-style: normal;
+}
+
+h1, p, div, span{
+    margin: 0;
+    padding: 0;
+    color: var(--primary-text-color);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Karla", sans-serif;
+}
+
+.home-page-bg {
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-title{
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+}
+
+.title-score{
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    color: var(--primary-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.title-score > h1{
+    width: fit-content;
+}
+
+.title-score > p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.horizontal-container{
+    display: flex;
+    flex-direction: row;
+    gap: 250px;
+    width: 1540px;
+}
+.ad-expl{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.ad-box1{
+    height: 150px;
+}
+
+.created-tasks{
+    height: 265px;
+    overflow-x: hidden;
+    margin-block: 25px;
+    list-style:none;
+    padding-left: 0; 
+    margin: 0;
+    overflow-y: scroll;
+}
+
+.finished-tasks{
+    height: 265px;
+    overflow-x: hidden;
+    margin-block: 25px;
+    list-style:none;
+    padding-left: 0; 
+    margin: 0;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(0, 10%, 35%);
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+
+.created-tasks .dragging {
+    transform: scale(1.05); /* Slightly enlarge the item for visual effect */
+    transition: transform 0.2s ease; /* Smooth transition */
+    z-index: 10; /* Make sure it's on top */
+    opacity: 0.8; /* Optionally reduce opacity while dragging */
+  }
+  
