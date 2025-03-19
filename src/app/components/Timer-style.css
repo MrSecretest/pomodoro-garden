@@ -3,6 +3,18 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 35px;
+  border-radius: 50%;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-bg{
+  background-color: hsl(0, 54%, 7%)
+}
+
+.rest-bg{
+  background-color: transparent;
+
 }
 
 .timer-button{

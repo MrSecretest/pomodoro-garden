@@ -5,12 +5,23 @@
 
 .plant {
     display: block;
-    position: relative; /* Make sure it's positioned */
-    z-index: 2; /* Higher than tomatoes */
+    position: relative; 
+    z-index: 2;
     pointer-events: none;
 }
 
 .tomato{
     position: absolute;
     z-index: 0;
+    transition: scale 0.2s ease-out;
+}
+.not_ready{
+    cursor: wait;
+}
+.ready{
+    cursor: pointer;;
+}
+
+.tomato:active{
+    scale: 0.9;
 }

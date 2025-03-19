@@ -20,6 +20,10 @@
     background-color: hsl(0, 39%, 45%);
 }
 
+.button-container:active{
+    scale: 0.95;
+}
+
 .task-button{
     height: 30px;
     width: 30px;

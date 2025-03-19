@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, createRef } from "react";
 import "./home.css";
 import TomatoPNG from "../media/tomato.png";
+import TomatoSlice from "../media/tomato-slice.png"
 import Image from "next/image";
 import CountdownCircle from "./components/Timer";
 import Button from "./components/Button";
 import Task from "./components/Task";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
-import Plant from "./components/Plant";
+import Plant, { PlantRef } from "./components/Plant";
+import React from "react";
 
 export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
@@ -16,14 +18,38 @@ export default function Home() {
   const [currentlyGathered, setCurrentlyGathered] = useState(0);
   const workTime = 5;
   const restTime = 4;
-  const [currentPhase, setCurrentPhase] = useState(workTime); 
-  const [timeLeft, setTimeLeft] = useState(currentPhase); 
+  const [currentPhase, setCurrentPhase] = useState(workTime);
+  const [timeLeft, setTimeLeft] = useState(currentPhase);
   const [timerIsActive, setTimerIsActive] = useState(false);
+  const [isGrowing, setIsGrowing] = useState(false);
+
+  const [plantsAmount, setPlantsAmount] = useState(1);
+
+  const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
+
+  const addPlant = () => {
+    setPlantsAmount((prev) => (prev === 4 ? 1 : prev + 1));
+  };
+
+  const handleGrowTomato = () => {
+    if (isGrowing) return;
+    setIsGrowing(true);
+    plantRefs.forEach((ref) => {
+      if (ref.current) {
+        ref.current.growTomato();
+      }
+    });
+    setTimeout(() => setIsGrowing(false), 100);
+  };
 
   const onComplete = () => {
-    const nextPhase = currentPhase === workTime ? restTime : workTime; 
+    const nextPhase = currentPhase === workTime ? restTime : workTime;
     setCurrentPhase(nextPhase);
-    setTimeLeft(nextPhase); 
+    console.log(currentPhase);
+    setTimeLeft(nextPhase);
+    if (currentPhase == restTime) {
+      addPlant();
+    }
   };
 
   const onAdd = (task: string) => {
@@ -56,10 +82,17 @@ export default function Home() {
     setTimerIsActive((prev) => !prev);
   };
 
-
-
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
+    if (
+      (timeLeft == Math.floor(currentPhase * 0.25) &&
+        currentPhase == workTime) ||
+      (timeLeft == Math.floor(currentPhase * 0.5) &&
+        currentPhase == workTime) ||
+      (timeLeft == Math.floor(currentPhase * 0.75) && currentPhase == workTime)
+    ) {
+      handleGrowTomato();
+    }
 
     if (timerIsActive && timeLeft > 0) {
       interval = setInterval(() => {
@@ -70,29 +103,52 @@ export default function Home() {
     }
 
     return () => {
-      if (interval) clearInterval(interval); // Cleanup the interval
+      if (interval) clearInterval(interval);
     };
   }, [timerIsActive, timeLeft]);
 
   return (
     <div className="home-page-bg">
+      <div className="half-circle-top">
+        <svg
+          viewBox="0 0 500 150"
+          preserveAspectRatio="none"
+          style={{ height: "100%", width: "100%", transform: "scale(1, -1)" }}
+        >
+          <path
+            d="M4.80,148.53 C183.68,-35.02 316.31,-28.11 499.72,156.42 L497.45,155.44 L7.05,148.53 Z"
+            style={{ stroke: "none", fill: "#1b0808" }}
+          ></path>
+        </svg>
+      </div>{" "}
       <div className="title-score">
         <div className="logo-title">
           <Image src={TomatoPNG} alt="image of a tomato" width={43} />
           <h1>pomodoro-garden</h1>
         </div>
-        <p>
-          currently gathered:
-          <span> {currentlyGathered} </span>
-          <Image src={TomatoPNG} alt="image of a tomato" width={24} />
-        </p>
+        <motion.p
+          style={{ fontWeight: "bold" }}
+          key={currentlyGathered}
+          initial={{ scale: 0 }}
+          animate={{ scale: [1.8, 1] }}
+          className="tooltip"
+        >
+          <span className="tooltiptext">how much ketchups made</span>
+          <span>{currentlyGathered}&nbsp; </span>
+          <Image src={TomatoSlice} alt="image of a tomato" width={28} />
+        </motion.p>
       </div>
       <div className="ad-expl">
         <div className="ad-box1"></div>
-        <p>grow tomatoes while working collect them while taking a break</p>
+        <p>
+          grow tomatoes while <span style={{ color: "#ee4744" }}>working</span>{" "}
+          collect them while taking a{" "}
+          <span style={{ color: "#ee4744" }}>break</span>
+        </p>
       </div>
       <div className="horizontal-container">
         <div className="tasks">
+          <p>tasks</p>
           <Task inputTask={true} func={(value: string) => onAdd(value)} />
           <Reorder.Group
             axis="y"
@@ -105,9 +161,9 @@ export default function Home() {
                 <Reorder.Item
                   key={task}
                   value={task}
-                  initial={{ x: 50, opacity: 0 }}
+                  initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -50, opacity: 0 }}
+                  exit={{ x: 50, opacity: 0 }}
                   transition={{ duration: 0.1 }}
                 >
                   <div>
@@ -129,21 +185,22 @@ export default function Home() {
           toggleTimer={toggleTimer}
           onComplete={onComplete}
         />
-        <div className="finished-tasks">
+        <div className="tasks">
+          <p>finished tasks</p>
           <Reorder.Group
             axis="y"
             values={finishedTask}
             onReorder={() => {}}
-            className="created-tasks"
+            className="finished-tasks"
           >
             <AnimatePresence>
               {finishedTask.map((task) => (
                 <Reorder.Item
                   key={task}
                   value={task}
-                  initial={{ x: 50, opacity: 0 }}
+                  initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -50, opacity: 0 }}
+                  exit={{ x: 50, opacity: 0 }}
                   transition={{ duration: 0.1 }}
                 >
                   <div>
@@ -159,18 +216,36 @@ export default function Home() {
             </AnimatePresence>
           </Reorder.Group>
         </div>
-        
       </div>
       <Button
-          buttonText={timerIsActive ? "pause" : "resume"} // Button text changes when timer finishes
-          buttonFunc={toggleTimer}
-        />
-      <div>
-        <Plant addTomato={addTomato} />
-        <Plant addTomato={addTomato} />
-        <Plant addTomato={addTomato} />
-        <Plant addTomato={addTomato} />
+        buttonText={timerIsActive ? "pause" : "resume"}
+        buttonFunc={toggleTimer}
+      />
+      <div className="half-circle-bottom">
+        <svg
+          viewBox="0 0 500 150"
+          preserveAspectRatio="none"
+          style={{ height: "100%", width: "100%" }}
+        >
+          <path
+            d="M4.80,148.53 C183.68,-35.02 316.31,-28.11 499.72,156.42 L497.45,155.44 L7.05,148.53 Z"
+            style={{ stroke: "none", fill: "#1b0808" }}
+          ></path>
+        </svg>
       </div>
+      <div className="plants-bottom">
+        {Array.from({ length: plantsAmount }).map((_, index) => (
+          <Plant
+            paused={timerIsActive}
+            key={index}
+            ref={plantRefs[index]} // Ensure ref is correctly assigned
+            addTomato={addTomato}
+            pickable={currentPhase == restTime}
+            delay={0.2 * index}
+          />
+        ))}
+      </div>
+      ;
     </div>
   );
 }

@@ -28,15 +28,10 @@ export default function CountdownCircle({
 
   const progress = (timeLeft / (phase)) * circumference;
 
-  useEffect(() => {
-    if (timeLeft === 0) {
-      onComplete();
-    }
-  }, [timeLeft, onComplete]);
 
   return (
     <div className="timer-button">
-      <div className="timer">
+      <div className= {`timer ${phase == restTime ? `rest-bg` : `work-bg`}`}>
         <svg width={String(size)} height={String(size)}>
           <circle
             cx={String(size / 2)}
@@ -58,7 +53,7 @@ export default function CountdownCircle({
             strokeLinecap="butt"
             transform={`rotate(-90 ${String(size / 2)} ${String(size / 2)})`}
             animate={{ strokeDashoffset: circumference - progress }}
-            transition={{ duration: 0.5, ease: "circOut" }}
+            transition={{ duration: 0.2, ease: "circOut" }}
           />
         </svg>
         <div className="text">
