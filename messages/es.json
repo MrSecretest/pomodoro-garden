@@ -1,0 +1,13 @@
+{
+  "title": "pomodoro-jardín",
+  "grow_work": "cultiva tomates mientras ",
+  "work": "trabajas",
+  "collect_break": "recógelos mientras tomas un ",
+  "break": "descanso",
+  "tasks": "tareas",
+  "finished_tasks": "tareas finalizadas",
+  "pause": "pausa",
+  "resume": "continuar",
+  "tooltip_text": "botellas de ketchup hechas",
+  "create_task": "crear nueva tarea"
+}

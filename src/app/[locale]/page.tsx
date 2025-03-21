@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, useEffect, useRef, createRef } from "react";
-import "./home.css";
-import TomatoPNG from "../media/tomato.png";
-import TomatoSlice from "../media/tomato-slice.png"
+import "../home.css";
+import TomatoPNG from "../../media/tomato.png";
+import TomatoSlice from "../../media/tomato-slice.png"
 import Image from "next/image";
-import CountdownCircle from "./components/Timer";
-import Button from "./components/Button";
-import Task from "./components/Task";
+import CountdownCircle from ".././components/Timer";
+import Button from "../components/Button";
+import Task from "../components/Task";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
-import Plant, { PlantRef } from "./components/Plant";
+import Plant, { PlantRef } from "../components/Plant";
 import React from "react";
+import {useTranslations} from 'next-intl';
 
 export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
@@ -106,7 +107,7 @@ export default function Home() {
       if (interval) clearInterval(interval);
     };
   }, [timerIsActive, timeLeft]);
-
+  const t = useTranslations('');
   return (
     <div className="home-page-bg">
       <div className="half-circle-top">
@@ -124,7 +125,7 @@ export default function Home() {
       <div className="title-score">
         <div className="logo-title">
           <Image src={TomatoPNG} alt="image of a tomato" width={43} />
-          <h1>pomodoro-garden</h1>
+          <h1>{t('title')}</h1>
         </div>
         <motion.p
           style={{ fontWeight: "bold" }}
@@ -133,7 +134,7 @@ export default function Home() {
           animate={{ scale: [1.8, 1] }}
           className="tooltip"
         >
-          <span className="tooltiptext">how much ketchups made</span>
+          <span className="tooltiptext">{t('tooltip_text')}</span>
           <span>{currentlyGathered}&nbsp; </span>
           <Image src={TomatoSlice} alt="image of a tomato" width={28} />
         </motion.p>
@@ -141,14 +142,14 @@ export default function Home() {
       <div className="ad-expl">
         <div className="ad-box1"></div>
         <p>
-          grow tomatoes while <span style={{ color: "#ee4744" }}>working</span>{" "}
-          collect them while taking a{" "}
-          <span style={{ color: "#ee4744" }}>break</span>
+          {t('grow_work')} <span style={{ color: "#ee4744" }}>{t('work')}</span>{" "}
+          {t('collect_break')}{" "}
+          <span style={{ color: "#ee4744" }}>{t('break')}</span>
         </p>
       </div>
       <div className="horizontal-container">
         <div className="tasks">
-          <p>tasks</p>
+          <p>{t("tasks")}</p>
           <Task inputTask={true} func={(value: string) => onAdd(value)} />
           <Reorder.Group
             axis="y"
@@ -186,7 +187,7 @@ export default function Home() {
           onComplete={onComplete}
         />
         <div className="tasks">
-          <p>finished tasks</p>
+          <p>{t("finished_tasks")}</p>
           <Reorder.Group
             axis="y"
             values={finishedTask}
@@ -218,7 +219,7 @@ export default function Home() {
         </div>
       </div>
       <Button
-        buttonText={timerIsActive ? "pause" : "resume"}
+        buttonText={timerIsActive ? t("pause") : t("resume")}
         buttonFunc={toggleTimer}
       />
       <div className="half-circle-bottom">
@@ -238,7 +239,7 @@ export default function Home() {
           <Plant
             paused={timerIsActive}
             key={index}
-            ref={plantRefs[index]} // Ensure ref is correctly assigned
+            ref={plantRefs[index]}
             addTomato={addTomato}
             pickable={currentPhase == restTime}
             delay={0.2 * index}

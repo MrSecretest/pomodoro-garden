@@ -1,0 +1,14 @@
+{
+    "title": "pomodoro-bahçesi",
+    "grow_work": "çalışırken domates yetiştir ",
+    "work": "çalışma",
+    "collect_break": "mola verirken onları topla ",
+    "break": "mola",
+    "tasks": "görevler",
+    "finished_tasks": "tamamlanan görevler",
+    "pause": "durdur",
+    "resume": "devam et",
+    "tooltip_text": "yapılan ketçap şişeleri",
+    "create_task": "yeni görev oluştur"
+  }
+  

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Task-style.css";
 import "./Buttons-style.css";
+import { useTranslations } from "next-intl";
 
 interface TaskProps {
   inputTask: boolean;
@@ -28,6 +29,7 @@ const Task = ({
   useEffect(() => {
     setTextValue(taskName);
   }, [taskName]);
+  const t = useTranslations('');
 
   return !finished ? (
     <form
@@ -40,7 +42,7 @@ const Task = ({
           value={textValue}
           readOnly={!inputTask}
           onChange={(e) => setTextValue(e.target.value)}
-          placeholder="create new task"
+          placeholder= {t('create_task')}
         />
       ) : (
         <p>{taskName}</p>

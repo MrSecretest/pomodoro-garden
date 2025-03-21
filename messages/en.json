@@ -1,0 +1,13 @@
+{
+  "title": "pomodoro-garden",
+  "grow_work": "grow tomatoes while ",
+  "work": "working",
+  "collect_break": "collect them while taking a ",
+  "break": "break",
+  "tasks": "tasks",
+  "finished_tasks": "finished tasks",
+  "pause": "pause",
+  "resume": "resume",
+  "tooltip_text": "bottles of ketchup made",
+  "create_task": "create new task"
+}

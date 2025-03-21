@@ -1,0 +1,13 @@
+{
+  "title": "pomodoro-ogrod",
+  "grow_work": "hoduj pomidory podczas ",
+  "work": "pracy",
+  "collect_break": "zbieraj je podczas ",
+  "break": "przerwy",
+  "tasks": "zadania",
+  "finished_tasks": "ukończone zadania",
+  "pause": "pauza",
+  "resume": "wznów",
+  "tooltip_text": "butelki keczupu zrobione",
+  "create_task": "utwórz nowe zadanie"
+}
