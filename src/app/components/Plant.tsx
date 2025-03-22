@@ -1,7 +1,5 @@
 "use client";
 
-import PlantImg from "../../media/plant.png";
-import TomatoPNG from "../../media/tomato.png";
 import React, { useImperativeHandle, useState } from "react";
 import Image from "next/image";
 import "./Plant.css";
@@ -19,7 +17,7 @@ export interface PlantRef {
   growTomato: () => void;
 }
 
-function Plant({paused, delay, pickable, addTomato, ref }: PlantProps) {
+function Plant({ paused, delay, pickable, addTomato, ref }: PlantProps) {
   const [tomatoes, setTomatoes] = useState<boolean[]>(new Array(3).fill(false));
 
   const growTomato = () => {
@@ -38,7 +36,7 @@ function Plant({paused, delay, pickable, addTomato, ref }: PlantProps) {
   useImperativeHandle(ref, () => ({
     growTomato,
   }));
-  
+
   const tomatoesPos = [
     { left: "20px", top: "5px" },
     { left: "60px", top: "7px" },
@@ -55,7 +53,7 @@ function Plant({paused, delay, pickable, addTomato, ref }: PlantProps) {
 
   return (
     <motion.div
-      animate={(!pickable && paused)? { y: [-5, 5, -5] } : {}}
+      animate={!pickable && paused ? { y: [-5, 5, -5] } : {}}
       transition={{
         delay: delay,
         duration: 2,
@@ -64,10 +62,15 @@ function Plant({paused, delay, pickable, addTomato, ref }: PlantProps) {
         ease: "easeInOut",
       }}
       className="plant-container"
-      
     >
       <div className="plant">
-        <Image src={PlantImg} width={129} alt="image of plant" />
+        <Image
+          src="/plant.png"
+          width={129}
+          height={0}
+          alt="Image of tomato plant"
+          style={{ height: "auto" }}
+        />{" "}
       </div>
       <AnimatePresence>
         {tomatoes.map(
@@ -82,7 +85,7 @@ function Plant({paused, delay, pickable, addTomato, ref }: PlantProps) {
                 key={index}
                 style={tomatoesPos[index]}
               >
-                <Image src={TomatoPNG} width={43} alt="image of a tomato" />
+                <Image src="/tomato.png" height={43} width={43} alt="image of a tomato" />
               </motion.div>
             ),
         )}
