@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, createRef } from "react";
 import "../home.css";
 import TomatoPNG from "../../media/tomato.png";
-import TomatoSlice from "../../media/tomato-slice.png"
+import TomatoSlice from "../../media/tomato-slice.png";
 import Image from "next/image";
 import CountdownCircle from ".././components/Timer";
 import Button from "../components/Button";
@@ -11,7 +11,9 @@ import Task from "../components/Task";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
 import Plant, { PlantRef } from "../components/Plant";
 import React from "react";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from "next-intl";
+import LanguageSelector from "../components/Language-selector";
+import RoundButton from "../components/Round-Button";
 
 export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
@@ -107,7 +109,7 @@ export default function Home() {
       if (interval) clearInterval(interval);
     };
   }, [timerIsActive, timeLeft]);
-  const t = useTranslations('');
+  const t = useTranslations("");
   return (
     <div className="home-page-bg">
       <div className="half-circle-top">
@@ -124,8 +126,12 @@ export default function Home() {
       </div>{" "}
       <div className="title-score">
         <div className="logo-title">
-          <Image src={TomatoPNG} alt="image of a tomato" width={43} />
-          <h1>{t('title')}</h1>
+          <Image
+            src={TomatoPNG}
+            alt="Tomato growing in the Pomodoro Garden app"
+            width={43}
+          />
+          <h1>{t("title")}</h1>
         </div>
         <motion.p
           style={{ fontWeight: "bold" }}
@@ -134,17 +140,21 @@ export default function Home() {
           animate={{ scale: [1.8, 1] }}
           className="tooltip"
         >
-          <span className="tooltiptext">{t('tooltip_text')}</span>
+          <span className="tooltiptext">{t("tooltip_text")}</span>
           <span>{currentlyGathered}&nbsp; </span>
-          <Image src={TomatoSlice} alt="image of a tomato" width={28} />
+          <Image
+            src={TomatoSlice}
+            alt="Tomato ketchup made from collected tomatoes in the Pomodoro Garden app"
+            width={28}
+          />
         </motion.p>
       </div>
       <div className="ad-expl">
         <div className="ad-box1"></div>
         <p>
-          {t('grow_work')} <span style={{ color: "#ee4744" }}>{t('work')}</span>{" "}
-          {t('collect_break')}{" "}
-          <span style={{ color: "#ee4744" }}>{t('break')}</span>
+          {t("grow_work")} <span style={{ color: "#ee4744" }}>{t("work")}</span>{" "}
+          {t("collect_break")}{" "}
+          <span style={{ color: "#ee4744" }}>{t("break")}</span>
         </p>
       </div>
       <div className="horizontal-container">
@@ -186,6 +196,7 @@ export default function Home() {
           toggleTimer={toggleTimer}
           onComplete={onComplete}
         />
+
         <div className="tasks">
           <p>{t("finished_tasks")}</p>
           <Reorder.Group
@@ -218,10 +229,49 @@ export default function Home() {
           </Reorder.Group>
         </div>
       </div>
-      <Button
-        buttonText={timerIsActive ? t("pause") : t("resume")}
-        buttonFunc={toggleTimer}
-      />
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        <RoundButton>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18px"
+            viewBox="0 -960 960 960"
+            width="18px"
+          >
+            <path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z" />
+          </svg>
+        </RoundButton>
+        <RoundButton buttonFunc={toggleTimer} big>
+          {timerIsActive ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+            >
+              <path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+            >
+              <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+            </svg>
+          )}
+        </RoundButton>
+        <RoundButton>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18px"
+            viewBox="0 -960 960 960"
+            width="18px"
+          >
+            <path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z" />
+          </svg>
+        </RoundButton>
+      </div>
       <div className="half-circle-bottom">
         <svg
           viewBox="0 0 500 150"
@@ -246,7 +296,6 @@ export default function Home() {
           />
         ))}
       </div>
-      ;
     </div>
   );
 }

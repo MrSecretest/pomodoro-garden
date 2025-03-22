@@ -1,0 +1,13 @@
+{
+  "title": "番茄花园",
+  "grow_work": "工作时种植番茄",
+  "work": "工作",
+  "collect_break": "休息时收集番茄",
+  "break": "休息",
+  "tasks": "任务",
+  "finished_tasks": "已完成的任务",
+  "pause": "暂停",
+  "resume": "继续",
+  "tooltip_text": "制作的番茄酱瓶数",
+  "create_task": "创建新任务"
+}

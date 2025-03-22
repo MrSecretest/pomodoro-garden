@@ -14,14 +14,24 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{locale: string}>;
 }) {
-  // Ensure that the incoming `locale` is valid
   const {locale} = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
   setRequestLocale(locale);
+
+  const metadata = {
+    title: `Pomodoro Garden - ${locale.toUpperCase()}`,
+    description: "Boost your productivity with a fun Pomodoro technique timer that grows tomatoes as you work!",
+  };
+
   return (
     <html lang={locale}>
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content="Pomodoro, garden, game, timer, productivity, study, work, focus" />
+      </head>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>

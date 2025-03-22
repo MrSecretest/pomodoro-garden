@@ -47,7 +47,7 @@ const Task = ({
       ) : (
         <p>{taskName}</p>
       )}
-      <div className="task-button" onClick={handleButtonClick}>
+      <div className="round-button" onClick={handleButtonClick}>
         {inputTask ? "+" : "✓"}
       </div>
     </form>
@@ -57,7 +57,7 @@ const Task = ({
       className={`task-container task-finished-container`}
     >
       <p>{taskName}</p>
-      <div className="task-button" onClick={handleButtonClick}>
+      <div className="round-button" onClick={handleButtonClick}>
         {"⨯"}
       </div>
     </div>

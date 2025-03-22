@@ -1,0 +1,25 @@
+.language-selector select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+  }
+  
+  .language-selector option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .language-selector select:focus {
+    border-color: #007bff;
+  }
+  
+  .language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
