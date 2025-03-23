@@ -25,3 +25,9 @@
 .tomato:active{
     scale: 0.9;
 }
+
+@media screen and (max-width: 768px) { /* Adjust breakpoint as needed */
+    .plant-container{
+        scale: 0.8;
+    }
+}

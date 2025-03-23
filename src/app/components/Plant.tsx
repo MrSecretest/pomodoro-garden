@@ -69,7 +69,7 @@ function Plant({ paused, delay, pickable, addTomato, ref }: PlantProps) {
           width={129}
           height={0}
           alt="Image of tomato plant"
-          style={{ height: "auto" }}
+          style={{ height: "auto"}}
         />{" "}
       </div>
       <AnimatePresence>
@@ -85,7 +85,12 @@ function Plant({ paused, delay, pickable, addTomato, ref }: PlantProps) {
                 key={index}
                 style={tomatoesPos[index]}
               >
-                <Image src="/tomato.png" height={43} width={43} alt="image of a tomato" />
+                <Image
+                  src="/tomato.png"
+                  height={43}
+                  width={43}
+                  alt="image of a tomato"
+                />
               </motion.div>
             ),
         )}

@@ -1,0 +1,10 @@
+<svg
+      viewBox="0 0 500 150"
+      preserveAspectRatio="none"
+      style={{ height: "100%", width: "100%" }}
+    >
+      <path
+        d="M4.80,148.53 C183.68,-35.02 316.31,-28.11 499.72,156.42 L497.45,155.44 L7.05,148.53 Z"
+        style={{ stroke: "none", fill: "#1b0808" }}
+      ></path>
+    </svg>

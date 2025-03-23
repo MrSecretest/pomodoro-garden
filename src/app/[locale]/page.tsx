@@ -25,7 +25,7 @@ export default function Home() {
   const [isGrowing, setIsGrowing] = useState(false);
   const [audio, setAudio] = useState(true);
   const [plantsAmount, setPlantsAmount] = useState(1);
-
+  const [tasksDone, setTasksDone] = useState(0);
   const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
 
   const addPlant = () => {
@@ -80,6 +80,12 @@ export default function Home() {
   };
 
   const addTomato = () => {
+    if (audio) {
+      const audio = new Audio("/tomato.wav");
+      audio.playbackRate = Math.random() * (1.2 - 0.5) + 0.5;
+      audio.volume = 0.1;
+      audio.play();
+    }
     setCurrentlyGathered(currentlyGathered + 1);
   };
 
@@ -106,6 +112,7 @@ export default function Home() {
     } else if (timeLeft === 0) {
       if (audio) {
         const audio = new Audio("/timer.mp3");
+        audio.volume = 0.3;
         audio.play();
       }
       onComplete();
@@ -129,7 +136,7 @@ export default function Home() {
             style={{ stroke: "none", fill: "#1b0808" }}
           ></path>
         </svg>
-      </div>{" "}
+      </div>
       <div className="title-score">
         <div className="logo-title">
           <Image
@@ -165,6 +172,7 @@ export default function Home() {
           <span style={{ color: "#ee4744" }}>{t("break")}</span>
         </p>
       </div>
+
       <div className="horizontal-container">
         <div className="tasks">
           <p>{t("tasks")}</p>
@@ -237,7 +245,7 @@ export default function Home() {
           </Reorder.Group>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+      <div className="round-buttons-wrapper">
         <RoundButton buttonFunc={toggleAudio}>
           {audio ? (
             <svg
@@ -291,7 +299,19 @@ export default function Home() {
           </svg>
         </RoundButton>
       </div>
-      <div className="half-circle-bottom">
+      <div className="plants-bottom">
+        <div className="plant-container-wrapper">
+          {Array.from({ length: plantsAmount }).map((_, index) => (
+            <Plant
+              paused={timerIsActive}
+              key={index}
+              ref={plantRefs[index]}
+              addTomato={addTomato}
+              pickable={currentPhase == restTime}
+              delay={0.2 * index}
+            />
+          ))}
+        </div>
         <svg
           viewBox="0 0 500 150"
           preserveAspectRatio="none"
@@ -302,18 +322,6 @@ export default function Home() {
             style={{ stroke: "none", fill: "#1b0808" }}
           ></path>
         </svg>
-      </div>
-      <div className="plants-bottom">
-        {Array.from({ length: plantsAmount }).map((_, index) => (
-          <Plant
-            paused={timerIsActive}
-            key={index}
-            ref={plantRefs[index]}
-            addTomato={addTomato}
-            pickable={currentPhase == restTime}
-            delay={0.2 * index}
-          />
-        ))}
       </div>
     </div>
   );

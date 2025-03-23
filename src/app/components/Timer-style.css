@@ -1,15 +1,20 @@
 .timer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 35px;
+  display: grid;
+  place-items: center; /* Centers children and stacks them */
+  margin-bottom: clamp(15px, 100vh, 30px);
   border-radius: 50%;
   transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 350px;
 }
 
+.timer > * { 
+  grid-area: 1 / 1; /* Ensures all children stack */
+}
+
+
 .work-bg{
-  background-color: hsl(0, 54%, 7%)
+  background-color: hsl(0, 54%, 7%);
+  
 }
 
 .rest-bg{
@@ -28,7 +33,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   flex-direction: column;
 }
 
