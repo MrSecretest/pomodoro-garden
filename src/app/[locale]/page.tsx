@@ -25,7 +25,12 @@ export default function Home() {
   const [isGrowing, setIsGrowing] = useState(false);
   const [audio, setAudio] = useState(true);
   const [plantsAmount, setPlantsAmount] = useState(1);
-  const [tasksDone, setTasksDone] = useState(0);
+  const [tasksDone, setTasksDone] = useState<string | null>(null);
+  const [ketchupsMade, setKetchupsMade] = useState<string | null>(null);
+  const [workPhasesDone, setWorkPhasesDone] = useState<string | null>(null);
+  const [restPhasesDone, setRestPhasesDone] = useState<string | null>(null);
+
+  const [statsShow, setStatsShow] = useState(false);
   const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
 
   const addPlant = () => {
@@ -50,6 +55,17 @@ export default function Home() {
     setTimeLeft(nextPhase);
     if (currentPhase == restTime) {
       addPlant();
+      const currentFinishedWorks = parseInt(workPhasesDone || "0");
+      const newFinishedWorks = currentFinishedWorks + 1;
+      setWorkPhasesDone(newFinishedWorks.toString());
+
+      localStorage.setItem("workPhasesDone", newFinishedWorks.toString());
+    } else {
+      const currentFinishedRests = parseInt(restPhasesDone || "0");
+      const newFinishedRests = currentFinishedRests + 1;
+      setRestPhasesDone(newFinishedRests.toString());
+
+      localStorage.setItem("restPhasesDone", newFinishedRests.toString());
     }
   };
 
@@ -68,6 +84,11 @@ export default function Home() {
   const onFinish = (task: string) => {
     if (!finishedTask.includes(task)) {
       setFinishedTask((prevTasks) => [task, ...prevTasks]);
+      const currentFinishedTask = parseInt(tasksDone || "0");
+      const newFinishedTask = currentFinishedTask + 1;
+      setTasksDone(newFinishedTask.toString());
+
+      localStorage.setItem("ketchupsMade", newFinishedTask.toString());
     }
   };
 
@@ -87,10 +108,20 @@ export default function Home() {
       audio.play();
     }
     setCurrentlyGathered(currentlyGathered + 1);
+
+    const currentKetchupsMade = parseInt(ketchupsMade || "0");
+    const newKetchupsMade = currentKetchupsMade + 1;
+    setKetchupsMade(newKetchupsMade.toString());
+
+    localStorage.setItem("ketchupsMade", newKetchupsMade.toString());
   };
 
   const toggleTimer = () => {
     setTimerIsActive((prev) => !prev);
+  };
+
+  const toggleStats = () => {
+    setStatsShow((prev) => !prev);
   };
 
   useEffect(() => {
@@ -123,8 +154,75 @@ export default function Home() {
     };
   }, [timerIsActive, timeLeft]);
   const t = useTranslations("");
+
+  useEffect(() => {
+    setTasksDone(localStorage.getItem("tasksDone"));
+    setKetchupsMade(localStorage.getItem("ketchupsMade"));
+    setWorkPhasesDone(localStorage.getItem("workPhasesDone"));
+    setRestPhasesDone(localStorage.getItem("restPhasesDone"));
+  }, []);
+
   return (
     <div className="home-page-bg">
+      <div className="statistic-toggle">
+        <RoundButton buttonFunc={toggleStats}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+          >
+            <path d="M160-160v-320h160v320H160Zm240 0v-640h160v640H400Zm240 0v-440h160v440H640Z" />
+          </svg>
+        </RoundButton>
+      </div>
+
+      <div className="language-toggle">
+        <RoundButton>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+          >
+            <path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z" />
+          </svg>
+        </RoundButton>
+      </div>
+      <AnimatePresence>
+        {statsShow ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 100 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+            className="stats-container"
+          >
+            <p className="stat-name">tasks done</p>
+            <p className="stat">{`${tasksDone}`}</p>
+            <p className="stat-name">ketchups made</p>
+
+            <p className="stat">{`${ketchupsMade}`}</p>
+            <p className="stat-name">work phases completed</p>
+
+            <p className="stat">{`${workPhasesDone}`}</p>
+            <p className="stat-name">rest phases completed</p>
+
+            <p className="stat">{`${restPhasesDone}`}</p>
+            <RoundButton buttonFunc={toggleStats}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+              >
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+              </svg>
+            </RoundButton>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
       <div className="half-circle-top">
         <svg
           viewBox="0 0 500 150"
@@ -164,8 +262,8 @@ export default function Home() {
           />
         </motion.p>
       </div>
-      <div className="ad-expl">
-        <div className="ad-box1"></div>
+      <div className="box-expl">
+        <div className="box"></div>
         <p>
           {t("grow_work")} <span style={{ color: "#ee4744" }}>{t("work")}</span>{" "}
           {t("collect_break")}{" "}
