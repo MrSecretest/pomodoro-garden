@@ -319,6 +319,13 @@ html {
   padding: 15px;
 }
 
+.stats-container > a{
+  padding-block: 5px;
+  text-align: start;
+  font-size: small;
+  color: var(--primary-text-color);
+}
+
 .stat-name {
   font-size: smaller;
   color: hsl(0, 50%, 85%);
@@ -334,6 +341,14 @@ html {
   z-index: 10;
   top: 0;
   left: 0;
+  margin: 25px;
+}
+
+.info-toggle{
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
   margin: 25px;
 }
 
