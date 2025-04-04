@@ -2,7 +2,7 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 export default async function LocaleLayout({
   children,
   params,
