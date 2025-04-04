@@ -11,7 +11,7 @@
 .karla-text {
   font-family: "Karla", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -130,7 +130,7 @@ body {
   gap: 13px;
   font-size: 0.7rem;
   align-items: center;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 .title-score {
@@ -219,7 +219,7 @@ body {
   margin-bottom: 50px;
 }
 
-.box p {
+.box-expl > p {
   padding-inline: 15px;
 }
 
@@ -236,6 +236,9 @@ body {
   border-radius: 15px;
   border: 2px dashed #62505072;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tasks > p {
@@ -296,20 +299,24 @@ html {
 .stats-container {
   position: absolute;
   z-index: 5;
-  width: 200px;
-  height: 400px;
+  width: 250px;
+  height: fit-content;
   background-color: hsla(0, 54%, 7%, 0.95);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   backdrop-filter: blur(30px);
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.stats-container > h1{
+  font-size: medium;
+  padding: 15px;
 }
 
 .stat-name {

@@ -9,5 +9,11 @@
   "pause": "pausa",
   "resume": "continuar",
   "tooltip_text": "botellas de ketchup hechas",
-  "create_task": "crear nueva tarea"
+  "create_task": "crear nueva tarea",
+  "stats": "estadísticas",
+  "tasks_done": "tareas completadas",
+  "ketchups_made": "ketchups hechos",
+  "work_phases_completed": "fases de trabajo completadas",
+  "rest_phases_completed": "fases de descanso completadas",
+  "swipe_to_switch": "desliza para cambiar de vista"
 }

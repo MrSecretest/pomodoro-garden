@@ -1,14 +1,19 @@
 {
-    "title": "pomodoro-zahrada",
-    "grow_work": "pěstujte rajčata při ",
-    "work": "práci",
-    "collect_break": "sbírejte je při ",
-    "break": "přestávce",
-    "tasks": "úkoly",
-    "finished_tasks": "dokončené úkoly",
-    "pause": "pozastavit",
-    "resume": "pokračovat",
-    "tooltip_text": "lahve kečupu vyrobené",
-    "create_task": "vytvořit nový úkol"
-  }
-  
+  "title": "pomodoro-zahrada",
+  "grow_work": "pěstujte rajčata při ",
+  "work": "práci",
+  "collect_break": "sbírejte je při ",
+  "break": "přestávce",
+  "tasks": "úkoly",
+  "finished_tasks": "dokončené úkoly",
+  "pause": "pozastavení",
+  "resume": "pokračovat",
+  "tooltip_text": "vyrobené lahve kečupu",
+  "create_task": "vytvořit nový úkol",
+  "stats": "statistiky",
+  "tasks_done": "úkoly dokončeny",
+  "ketchups_made": "kečupy vyrobené",
+  "work_phases_completed": "pracovní fáze dokončeny",
+  "rest_phases_completed": "odpočinkové fáze dokončeny",
+  "swipe_to_switch": "přejeďte pro přepnutí zobrazení"
+}

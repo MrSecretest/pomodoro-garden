@@ -29,7 +29,7 @@ const Task = ({
   useEffect(() => {
     setTextValue(taskName);
   }, [taskName]);
-  const t = useTranslations('');
+  const t = useTranslations("");
 
   return !finished ? (
     <form
@@ -39,16 +39,35 @@ const Task = ({
       {inputTask ? (
         <input
           type="text"
+          maxLength={30}
           value={textValue}
           readOnly={!inputTask}
           onChange={(e) => setTextValue(e.target.value)}
-          placeholder= {t('create_task')}
+          placeholder={t("create_task")}
         />
       ) : (
         <p>{taskName}</p>
       )}
       <div className="round-button" onClick={handleButtonClick}>
-        {inputTask ? "+" : "✓"}
+        {inputTask ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="16px"
+            viewBox="0 -960 960 960"
+            width="16px"
+          >
+            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="16px"
+            viewBox="0 -960 960 960"
+            width="16px"
+          >
+            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+          </svg>
+        )}
       </div>
     </form>
   ) : (
@@ -58,7 +77,14 @@ const Task = ({
     >
       <p>{taskName}</p>
       <div className="round-button" onClick={handleButtonClick}>
-        {"⨯"}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="16px"
+          viewBox="0 -960 960 960"
+          width="16px"
+        >
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
       </div>
     </div>
   );

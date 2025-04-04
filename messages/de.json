@@ -1,13 +1,19 @@
 {
   "title": "pomodoro-garten",
-  "grow_work": "tomaten während der ",
-  "work": "arbeit anpflanzen",
-  "collect_break": "sammle sie während einer ",
+  "grow_work": "baue tomaten während der ",
+  "work": "arbeit an",
+  "collect_break": "sammle sie in der ",
   "break": "pause",
   "tasks": "aufgaben",
   "finished_tasks": "abgeschlossene aufgaben",
-  "pause": "pause",
+  "pause": "pausieren",
   "resume": "fortsetzen",
-  "tooltip_text": "flaschen ketchup gemacht",
-  "create_task": "crea una nuova attività"
+  "tooltip_text": "hergestellte ketchupflaschen",
+  "create_task": "neue aufgabe erstellen",
+  "stats": "statistiken",
+  "tasks_done": "aufgaben erledigt",
+  "ketchups_made": "hergestellte ketchupflaschen",
+  "work_phases_completed": "arbeitsphasen abgeschlossen",
+  "rest_phases_completed": "pausenzeiten abgeschlossen",
+  "swipe_to_switch": "zum wechseln wischen"
 }

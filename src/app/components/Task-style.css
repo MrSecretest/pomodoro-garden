@@ -35,7 +35,7 @@
     font-size: 14px;
     width: 250px;
     height: 35px;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 

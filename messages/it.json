@@ -7,7 +7,13 @@
   "tasks": "compiti",
   "finished_tasks": "compiti completati",
   "pause": "pausa",
-  "resume": "riprendere",
+  "resume": "riprendi",
   "tooltip_text": "bottiglie di ketchup fatte",
-  "create_task": "crea una nuova attività"
+  "create_task": "crea un nuovo compito",
+  "stats": "statistiche",
+  "tasks_done": "compiti completati",
+  "ketchups_made": "ketchups fatti",
+  "work_phases_completed": "fasi di lavoro completate",
+  "rest_phases_completed": "fasi di riposo completate",
+  "swipe_to_switch": "scorri per cambiare vista"
 }

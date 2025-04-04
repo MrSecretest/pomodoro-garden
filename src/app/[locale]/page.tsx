@@ -12,13 +12,14 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import LanguageSelector from "../components/Language-selector";
 import RoundButton from "../components/Round-Button";
+import LanguageDropdown from "../components/Language-selector";
 
 export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
   const [finishedTask, setFinishedTask] = useState<string[]>([]);
   const [currentlyGathered, setCurrentlyGathered] = useState(0);
-  const workTime = 5;
-  const restTime = 4;
+  const workTime = 1500;
+  const restTime = 300;
   const [currentPhase, setCurrentPhase] = useState(workTime);
   const [timeLeft, setTimeLeft] = useState(currentPhase);
   const [timerIsActive, setTimerIsActive] = useState(false);
@@ -32,6 +33,17 @@ export default function Home() {
 
   const [statsShow, setStatsShow] = useState(false);
   const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   const addPlant = () => {
     setPlantsAmount((prev) => (prev === 4 ? 1 : prev + 1));
@@ -88,7 +100,7 @@ export default function Home() {
       const newFinishedTask = currentFinishedTask + 1;
       setTasksDone(newFinishedTask.toString());
 
-      localStorage.setItem("ketchupsMade", newFinishedTask.toString());
+      localStorage.setItem("tasksDone", newFinishedTask.toString());
     }
   };
 
@@ -178,16 +190,7 @@ export default function Home() {
       </div>
 
       <div className="language-toggle">
-        <RoundButton>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-          >
-            <path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z" />
-          </svg>
-        </RoundButton>
+        <LanguageDropdown></LanguageDropdown>
       </div>
       <AnimatePresence>
         {statsShow ? (
@@ -198,17 +201,18 @@ export default function Home() {
             transition={{ duration: 0.1 }}
             className="stats-container"
           >
-            <p className="stat-name">tasks done</p>
-            <p className="stat">{`${tasksDone}`}</p>
-            <p className="stat-name">ketchups made</p>
+            <h1>{t("stats")}</h1>
+            <p className="stat-name"> {t("tasks_done")}</p>
+            <p className="stat">{`${tasksDone == null ? "0" : tasksDone}`}</p>
+            <p className="stat-name">{t("ketchups_made")}</p>
 
-            <p className="stat">{`${ketchupsMade}`}</p>
-            <p className="stat-name">work phases completed</p>
+            <p className="stat">{`${ketchupsMade == null ? "0" : ketchupsMade}`}</p>
+            <p className="stat-name">{t("work_phases_completed")}</p>
 
-            <p className="stat">{`${workPhasesDone}`}</p>
-            <p className="stat-name">rest phases completed</p>
+            <p className="stat">{`${workPhasesDone == null ? "0" : workPhasesDone}`}</p>
+            <p className="stat-name">{t("rest_phases_completed")}</p>
 
-            <p className="stat">{`${restPhasesDone}`}</p>
+            <p className="stat">{`${restPhasesDone == null ? "0" : restPhasesDone}`}</p>
             <RoundButton buttonFunc={toggleStats}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -269,6 +273,9 @@ export default function Home() {
           {t("collect_break")}{" "}
           <span style={{ color: "#ee4744" }}>{t("break")}</span>
         </p>
+        {windowWidth <= 1200 && (
+          <p style={{ paddingTop: "10px" }}>{t("swipe_to_switch")}</p>
+        )}
       </div>
 
       <div className="horizontal-container">
@@ -352,7 +359,7 @@ export default function Home() {
               viewBox="0 -960 960 960"
               width="18px"
             >
-              <path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z" />
+              <path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z" />
             </svg>
           ) : (
             <svg
@@ -361,7 +368,7 @@ export default function Home() {
               viewBox="0 -960 960 960"
               width="18px"
             >
-              <path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z" />
+              <path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z" />
             </svg>
           )}
         </RoundButton>

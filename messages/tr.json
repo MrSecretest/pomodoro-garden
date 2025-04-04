@@ -1,14 +1,19 @@
 {
-    "title": "pomodoro-bahçesi",
-    "grow_work": "çalışırken domates yetiştir ",
-    "work": "çalışma",
-    "collect_break": "mola verirken onları topla ",
-    "break": "mola",
-    "tasks": "görevler",
-    "finished_tasks": "tamamlanan görevler",
-    "pause": "durdur",
-    "resume": "devam et",
-    "tooltip_text": "yapılan ketçap şişeleri",
-    "create_task": "yeni görev oluştur"
-  }
-  
+  "title": "pomodoro-bahçesi",
+  "grow_work": "çalışırken domates yetiştir ",
+  "work": "çalışma",
+  "collect_break": "mola verirken onları topla ",
+  "break": "mola",
+  "tasks": "görevler",
+  "finished_tasks": "tamamlanan görevler",
+  "pause": "duraklat",
+  "resume": "devam et",
+  "tooltip_text": "yapılmış ketçap şişeleri",
+  "create_task": "yeni görev oluştur",
+  "stats": "istatistikler",
+  "tasks_done": "yapılan görevler",
+  "ketchups_made": "yapılmış ketçap şişeleri",
+  "work_phases_completed": "tamamlanan çalışma aşamaları",
+  "rest_phases_completed": "tamamlanan dinlenme aşamaları",
+  "swipe_to_switch": "görünümü değiştirmek için kaydırın"
+}

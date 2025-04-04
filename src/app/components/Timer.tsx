@@ -20,8 +20,8 @@ export default function CountdownCircle({
   onComplete,
   phase,
 }: CountdownCircleProps) {
-  const workTime = 5;
-  const restTime = 4;
+  const workTime = 1500;
+  const restTime = 300;
 
   const [timerSize, setTimerSize] = useState(200);
 

@@ -1,13 +1,19 @@
 {
   "title": "pomodoro-ogród",
-  "grow_work": "hoduj pomidory podczas ",
+  "grow_work": "uprawiaj pomidory podczas ",
   "work": "pracy",
   "collect_break": "zbieraj je podczas ",
   "break": "przerwy",
   "tasks": "zadania",
   "finished_tasks": "ukończone zadania",
   "pause": "pauza",
-  "resume": "wznów",
-  "tooltip_text": "butelki keczupu zrobione",
-  "create_task": "utwórz nowe zadanie"
+  "resume": "kontynuuj",
+  "tooltip_text": "zrobione butelki keczupu",
+  "create_task": "utwórz nowe zadanie",
+  "stats": "statystyki",
+  "tasks_done": "wykonane zadania",
+  "ketchups_made": "przygotowane butelki ketchupu",
+  "work_phases_completed": "ukończone etapy pracy",
+  "rest_phases_completed": "ukończone etapy odpoczynku",
+  "swipe_to_switch": "przesuń, aby zmienić widok"
 }
