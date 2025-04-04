@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef, createRef } from "react";
+import { useState, useEffect, createRef } from "react";
 import "../home.css";
 import Image from "next/image";
 import CountdownCircle from ".././components/Timer";
-import Button from "../components/Button";
 import Task from "../components/Task";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
 import Plant, { PlantRef } from "../components/Plant";
 import React from "react";
 import { useTranslations } from "next-intl";
-import LanguageSelector from "../components/Language-selector";
 import RoundButton from "../components/Round-Button";
 import LanguageDropdown from "../components/Language-selector";
 
@@ -103,7 +101,6 @@ export default function Home() {
       localStorage.setItem("tasksDone", newFinishedTask.toString());
     }
   };
-
   const toggleAudio = () => {
     setAudio((prevAudio) => !audio);
   };
@@ -164,15 +161,16 @@ export default function Home() {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [timerIsActive, timeLeft]);
+  }, [audio, currentPhase, handleGrowTomato, onComplete, timerIsActive, timeLeft]);
   const t = useTranslations("");
 
   useEffect(() => {
-    setTasksDone(localStorage.getItem("tasksDone"));
-    setKetchupsMade(localStorage.getItem("ketchupsMade"));
-    setWorkPhasesDone(localStorage.getItem("workPhasesDone"));
-    setRestPhasesDone(localStorage.getItem("restPhasesDone"));
+    setTasksDone(localStorage.getItem("tasksDone") ?? "0");
+    setKetchupsMade(localStorage.getItem("ketchupsMade") ?? "0");
+    setWorkPhasesDone(localStorage.getItem("workPhasesDone") ?? "0");
+    setRestPhasesDone(localStorage.getItem("restPhasesDone") ?? "0");
   }, []);
+  
 
   return (
     <div className="home-page-bg">

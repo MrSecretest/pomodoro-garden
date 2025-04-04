@@ -1,6 +1,6 @@
 import "./Buttons-style.css"
 interface ButtonProps {
-    buttonText: String,
+    buttonText: string,
     buttonFunc?: () => void,
 }
 export default function Button({buttonText, buttonFunc} : ButtonProps){
