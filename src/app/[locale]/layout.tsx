@@ -56,7 +56,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-      <Script
+        <link rel="icon" href="/favicon.ico" />
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
           crossOrigin="anonymous"
@@ -67,7 +68,6 @@ export default async function LocaleLayout({
           content="8CXgFntaN4mZ5prWxiD90nML_uYVgro_Sz4yyPAXJ48"
         />
         <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
-        <link rel="icon" href="/tomato.png" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta
