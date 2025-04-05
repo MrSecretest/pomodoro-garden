@@ -248,11 +248,11 @@ export default function Home() {
 
               <p className="stat">{`${ketchupsMade == null ? "0" : ketchupsMade}`}</p>
               <p className="stat-name">{t("work_phases_completed")}</p>
-
-              <p className="stat">{`${workPhasesDone == null ? "0" : workPhasesDone}`}</p>
-              <p className="stat-name">{t("rest_phases_completed")}</p>
-
               <p className="stat">{`${restPhasesDone == null ? "0" : restPhasesDone}`}</p>
+
+              <p className="stat-name">{t("rest_phases_completed")}</p>
+              <p className="stat">{`${workPhasesDone == null ? "0" : workPhasesDone}`}</p>
+
               <RoundButton buttonFunc={toggleStats}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
