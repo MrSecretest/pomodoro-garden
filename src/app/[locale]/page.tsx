@@ -18,8 +18,8 @@ export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
   const [finishedTask, setFinishedTask] = useState<string[]>([]);
   const [currentlyGathered, setCurrentlyGathered] = useState(0);
-  const workTime = 60;
-  const restTime = 10;
+  const workTime = 1500;
+  const restTime = 300;
   const [currentPhase, setCurrentPhase] = useState(workTime);
   const [timeLeft, setTimeLeft] = useState(currentPhase);
   const [timerIsActive, setTimerIsActive] = useState(false);
