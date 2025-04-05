@@ -185,7 +185,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home-page-bg">
+    <>
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
+      </head>
+        <div className="home-page-bg">
       <div className="info-toggle">
         <RoundButton buttonFunc={toggleInfo}>
           <svg
@@ -495,5 +499,7 @@ export default function Home() {
         </svg>
       </div>
     </div>
+    </>
+
   );
 }

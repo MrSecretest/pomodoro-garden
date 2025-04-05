@@ -48,7 +48,8 @@ export default async function LocaleLayout({
 
   const metadata = {
     title: titles[locale as keyof typeof titles] || "Pomodoro Garden",
-    description: descriptions[locale as keyof typeof descriptions] || descriptions.en,
+    description:
+      descriptions[locale as keyof typeof descriptions] || descriptions.en,
   };
 
   return (
@@ -61,6 +62,7 @@ export default async function LocaleLayout({
           name="keywords"
           content="Pomodoro, garden, game, timer, productivity, study, work, focus"
         />
+        <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
       </head>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
