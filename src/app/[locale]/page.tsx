@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, createRef, useRef } from "react";
+import { useState, useEffect, createRef, useRef, useCallback } from "react";
 import "../home.css";
 import Image from "next/image";
 import CountdownCircle from ".././components/Timer";
@@ -18,8 +18,8 @@ export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
   const [finishedTask, setFinishedTask] = useState<string[]>([]);
   const [currentlyGathered, setCurrentlyGathered] = useState(0);
-  const workTime = 1500;
-  const restTime = 300;
+  const workTime = 60;
+  const restTime = 10;
   const [currentPhase, setCurrentPhase] = useState(workTime);
   const [timeLeft, setTimeLeft] = useState(currentPhase);
   const [timerIsActive, setTimerIsActive] = useState(false);
@@ -33,7 +33,7 @@ export default function Home() {
   const milestonesReached = useRef(new Set<number>());
   const [statsShow, setStatsShow] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
-
+  const [growCall, setGrowCall] = useState(false);
   const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
   const [windowWidth, setWindowWidth] = useState<number>(0);
   useEffect(() => {
@@ -51,37 +51,31 @@ export default function Home() {
     setPlantsAmount((prev) => (prev === 4 ? 1 : prev + 1));
   };
 
-  const handleGrowTomato = () => {
+  const handleGrowTomato = useCallback(() => {
     if (isGrowing) return;
     setIsGrowing(true);
     plantRefs.forEach((ref) => {
-      if (ref.current) {
-        ref.current.growTomato();
-      }
+      ref.current?.growTomato();
     });
     setTimeout(() => setIsGrowing(false), 100);
-  };
+  }, [plantRefs, isGrowing]);
 
-  const onComplete = () => {
+  const onComplete = useCallback(() => {
     const nextPhase = currentPhase === workTime ? restTime : workTime;
     setCurrentPhase(nextPhase);
-    console.log(currentPhase);
     setTimeLeft(nextPhase);
-    if (currentPhase == restTime) {
+
+    if (currentPhase === restTime) {
       addPlant();
-      const currentFinishedWorks = parseInt(workPhasesDone || "0");
-      const newFinishedWorks = currentFinishedWorks + 1;
-      setWorkPhasesDone(newFinishedWorks.toString());
-
-      localStorage.setItem("workPhasesDone", newFinishedWorks.toString());
+      const updated = parseInt(workPhasesDone || "0") + 1;
+      setWorkPhasesDone(updated.toString());
+      localStorage.setItem("workPhasesDone", updated.toString());
     } else {
-      const currentFinishedRests = parseInt(restPhasesDone || "0");
-      const newFinishedRests = currentFinishedRests + 1;
-      setRestPhasesDone(newFinishedRests.toString());
-
-      localStorage.setItem("restPhasesDone", newFinishedRests.toString());
+      const updated = parseInt(restPhasesDone || "0") + 1;
+      setRestPhasesDone(updated.toString());
+      localStorage.setItem("restPhasesDone", updated.toString());
     }
-  };
+  }, [currentPhase, restTime, workTime, workPhasesDone, restPhasesDone]);
 
   const onAdd = (task: string) => {
     if (!currentTask.includes(task) && !finishedTask.includes(task)) {
@@ -143,10 +137,10 @@ export default function Home() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-  
+
     if (currentPhase === workTime) {
       const percentLeft = timeLeft / currentPhase;
-  
+
       [0.75, 0.5, 0.25].forEach((milestone) => {
         if (
           percentLeft <= milestone &&
@@ -157,36 +151,36 @@ export default function Home() {
         }
       });
     }
-  
+
     if (timerIsActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (timeLeft === 0) {
-      milestonesReached.current.clear(); // reset for next phase
-  
+      milestonesReached.current.clear();
+
       if (audio) {
         const audio = new Audio("/timer.mp3");
         audio.volume = 0.3;
         audio.play();
       }
-  
+
       onComplete();
     }
-  
+
     return () => {
       if (interval) clearInterval(interval);
     };
   }, [
     audio,
     currentPhase,
-    handleGrowTomato,
     onComplete,
     timerIsActive,
     timeLeft,
     workTime,
+    handleGrowTomato,
   ]);
-  
+
   const t = useTranslations("");
 
   useEffect(() => {
@@ -198,12 +192,12 @@ export default function Home() {
 
   return (
     <>
-    <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
       <div className="home-page-bg">
         <AnimatePresence>
           <WelcomePopup
@@ -281,7 +275,7 @@ export default function Home() {
               transition={{ duration: 0.1 }}
               className="stats-container"
             >
-              <h1>"made by Oleh Kulys"</h1>
+              <h1>made by Oleh Kulys</h1>
               <p className="stat-name">Attribution</p>
               <a
                 href="https://www.flaticon.com/free-icons/tomato"
