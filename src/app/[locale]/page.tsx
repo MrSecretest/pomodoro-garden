@@ -187,6 +187,10 @@ export default function Home() {
   return (
     <>
       <head>
+        <meta
+          name="google-site-verification"
+          content="8CXgFntaN4mZ5prWxiD90nML_uYVgro_Sz4yyPAXJ48"
+        />
         <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
       </head>
       <body>
