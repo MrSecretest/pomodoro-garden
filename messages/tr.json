@@ -15,5 +15,9 @@
   "ketchups_made": "yapılmış ketçap şişeleri",
   "work_phases_completed": "tamamlanan çalışma aşamaları",
   "rest_phases_completed": "tamamlanan dinlenme aşamaları",
-  "swipe_to_switch": "görünümü değiştirmek için kaydırın"
+  "swipe_to_switch": "görünümü değiştirmek için kaydırın",
+  "welcome_msg": "Pomodoro Garden'a Hoş Geldiniz! 🍅",
+  "watch_grow": "Çalışırken saksılarınızda domateslerin büyümesini izleyin, ve molanızda onları toplayın.",
+  "each_completed": "Tamamlanan her çalışma aşaması size yeni bir domates saksısı verir",
+  "swipe_switch": "Görünümler arasında geçiş yapmak için Zamanlayıcıda yukarı veya aşağı kaydırın (mobil)"
 }

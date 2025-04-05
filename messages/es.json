@@ -15,5 +15,9 @@
   "ketchups_made": "ketchups hechos",
   "work_phases_completed": "fases de trabajo completadas",
   "rest_phases_completed": "fases de descanso completadas",
-  "swipe_to_switch": "desliza para cambiar de vista"
+  "swipe_to_switch": "desliza para cambiar de vista",
+  "welcome_msg": "¡Bienvenido a Pomodoro Garden! 🍅",
+  "watch_grow": "Observa cómo crecen los tomates en tus macetas mientras trabajas, y recógelos durante tu descanso.",
+  "each_completed": "Cada fase de trabajo completada te da una nueva maceta de tomate",
+  "swipe_switch": "Desliza hacia arriba o abajo en el temporizador para cambiar de vista (móvil)"
 }

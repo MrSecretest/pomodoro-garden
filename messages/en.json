@@ -15,5 +15,9 @@
   "ketchups_made": "ketchups made",
   "work_phases_completed": "work phases completed",
   "rest_phases_completed": "rest phases completed",
-  "swipe_to_switch": "swipe to switch views"
+  "swipe_to_switch": "swipe to switch views",
+  "welcome_msg": "Welcome to Pomodoro Garden! 🍅",
+  "watch_grow": "Watch tomatoes grow in your pots as you work, then collect them during your break.",
+  "each_completed": "Each completed work phase gives you a new tomato pot",
+  "swipe_switch": "Swipe up or down on Timer to switch views (mobile)"
 }

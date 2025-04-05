@@ -15,5 +15,9 @@
   "ketchups_made": "bouteilles de ketchup faites",
   "work_phases_completed": "phases de travail terminées",
   "rest_phases_completed": "phases de repos terminées",
-  "swipe_to_switch": "glissez pour changer de vue"
+  "swipe_to_switch": "glissez pour changer de vue",
+  "welcome_msg": "Bienvenue dans Pomodoro Garden ! 🍅",
+  "watch_grow": "Regardez les tomates pousser dans vos pots pendant que vous travaillez, puis récoltez-les pendant votre pause.",
+  "each_completed": "Chaque phase de travail terminée vous donne un nouveau pot de tomates",
+  "swipe_switch": "Faites glisser le minuteur vers le haut ou le bas pour changer de vue (mobile)"
 }

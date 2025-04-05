@@ -15,5 +15,9 @@
   "ketchups_made": "ketchups fatti",
   "work_phases_completed": "fasi di lavoro completate",
   "rest_phases_completed": "fasi di riposo completate",
-  "swipe_to_switch": "scorri per cambiare vista"
+  "swipe_to_switch": "scorri per cambiare vista",
+  "welcome_msg": "Benvenuto in Pomodoro Garden! 🍅",
+  "watch_grow": "Guarda i pomodori crescere nei vasi mentre lavori, e raccoglili durante la pausa.",
+  "each_completed": "Ogni fase di lavoro completata ti regala un nuovo vaso di pomodoro",
+  "swipe_switch": "Scorri su o giù sul timer per cambiare vista (mobile)"
 }

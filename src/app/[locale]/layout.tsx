@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 export default async function LocaleLayout({
   children,
@@ -55,6 +56,17 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+      <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        <meta
+          name="google-site-verification"
+          content="8CXgFntaN4mZ5prWxiD90nML_uYVgro_Sz4yyPAXJ48"
+        />
+        <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
         <link rel="icon" href="/tomato.png" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />

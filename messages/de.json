@@ -15,5 +15,9 @@
   "ketchups_made": "hergestellte ketchupflaschen",
   "work_phases_completed": "arbeitsphasen abgeschlossen",
   "rest_phases_completed": "pausenzeiten abgeschlossen",
-  "swipe_to_switch": "zum wechseln wischen"
+  "swipe_to_switch": "zum wechseln wischen",
+  "welcome_msg": "Willkommen im Pomodoro-Garten! 🍅",
+  "watch_grow": "Beobachten Sie, wie Tomaten in Ihren Töpfen wachsen, während Sie arbeiten, und sammeln Sie sie in Ihrer Pause.",
+  "each_completed": "Jede abgeschlossene Arbeitsphase gibt Ihnen einen neuen Tomatentopf",
+  "swipe_switch": "Wischen Sie auf dem Timer nach oben oder unten, um die Ansicht zu wechseln (mobil)"
 }

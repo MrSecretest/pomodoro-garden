@@ -15,5 +15,10 @@
   "ketchups_made": "kečupy vyrobené",
   "work_phases_completed": "pracovní fáze dokončeny",
   "rest_phases_completed": "odpočinkové fáze dokončeny",
-  "swipe_to_switch": "přejeďte pro přepnutí zobrazení"
+  "swipe_to_switch": "přejeďte pro přepnutí zobrazení",
+  "welcome_msg": "Vítejte v Pomodoro Garden! 🍅",
+  "watch_grow": "Sledujte, jak vám během práce rostou rajčata v květináčích, a během přestávky je sbírejte.",
+  "each_completed": "Každá dokončená pracovní fáze vám přidá nový květináč s rajčetem",
+  "swipe_switch": "Přepínejte mezi zobrazeními posunutím časovače nahoru nebo dolů (mobilní zařízení)"
+
 }

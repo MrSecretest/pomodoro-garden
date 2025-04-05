@@ -15,5 +15,9 @@
   "ketchups_made": "przygotowane butelki ketchupu",
   "work_phases_completed": "ukończone etapy pracy",
   "rest_phases_completed": "ukończone etapy odpoczynku",
-  "swipe_to_switch": "przesuń, aby zmienić widok"
+  "swipe_to_switch": "przesuń, aby zmienić widok",
+  "welcome_msg": "Witamy w Pomodoro Garden! 🍅",
+  "watch_grow": "Obserwuj, jak pomidory rosną w doniczkach podczas pracy, a potem zbieraj je w trakcie przerwy.",
+  "each_completed": "Każda ukończona faza pracy dodaje nową doniczkę z pomidorem",
+  "swipe_switch": "Przeciągnij timer w górę lub w dół, aby przełączyć widok (telefon)"
 }

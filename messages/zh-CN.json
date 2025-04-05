@@ -15,5 +15,9 @@
   "ketchups_made": "制作的番茄酱瓶",
   "work_phases_completed": "完成的工作阶段",
   "rest_phases_completed": "完成的休息阶段",
-  "swipe_to_switch": "滑动切换视图"
+  "swipe_to_switch": "滑动切换视图",
+  "welcome_msg": "欢迎来到番茄花园！🍅",
+  "watch_grow": "工作时观察番茄在盆中的生长，休息时收获它们。",
+  "each_completed": "每个完成的工作阶段都会给你一个新的番茄盆",
+  "swipe_switch": "在计时器上向上或向下滑动以切换视图（移动端）"
 }

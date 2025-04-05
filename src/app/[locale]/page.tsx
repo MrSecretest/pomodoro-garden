@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, createRef } from "react";
+import { useState, useEffect, createRef, useRef } from "react";
 import "../home.css";
 import Image from "next/image";
 import CountdownCircle from ".././components/Timer";
@@ -11,6 +11,8 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import RoundButton from "../components/Round-Button";
 import LanguageDropdown from "../components/Language-selector";
+import WelcomePopup from "../components/WelcomePopUp";
+import Script from "next/script";
 
 export default function Home() {
   const [currentTask, setCurrentTask] = useState<string[]>([]);
@@ -28,7 +30,7 @@ export default function Home() {
   const [ketchupsMade, setKetchupsMade] = useState<string | null>(null);
   const [workPhasesDone, setWorkPhasesDone] = useState<string | null>(null);
   const [restPhasesDone, setRestPhasesDone] = useState<string | null>(null);
-
+  const milestonesReached = useRef(new Set<number>());
   const [statsShow, setStatsShow] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
 
@@ -141,29 +143,37 @@ export default function Home() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-    if (
-      (timeLeft == Math.floor(currentPhase * 0.25) &&
-        currentPhase == workTime) ||
-      (timeLeft == Math.floor(currentPhase * 0.5) &&
-        currentPhase == workTime) ||
-      (timeLeft == Math.floor(currentPhase * 0.75) && currentPhase == workTime)
-    ) {
-      handleGrowTomato();
+  
+    if (currentPhase === workTime) {
+      const percentLeft = timeLeft / currentPhase;
+  
+      [0.75, 0.5, 0.25].forEach((milestone) => {
+        if (
+          percentLeft <= milestone &&
+          !milestonesReached.current.has(milestone)
+        ) {
+          milestonesReached.current.add(milestone);
+          handleGrowTomato();
+        }
+      });
     }
-
+  
     if (timerIsActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (timeLeft === 0) {
+      milestonesReached.current.clear(); // reset for next phase
+  
       if (audio) {
         const audio = new Audio("/timer.mp3");
         audio.volume = 0.3;
         audio.play();
       }
+  
       onComplete();
     }
-
+  
     return () => {
       if (interval) clearInterval(interval);
     };
@@ -174,7 +184,9 @@ export default function Home() {
     onComplete,
     timerIsActive,
     timeLeft,
+    workTime,
   ]);
+  
   const t = useTranslations("");
 
   useEffect(() => {
@@ -186,21 +198,18 @@ export default function Home() {
 
   return (
     <>
-      <head>
-        <meta
-          name="google-site-verification"
-          content="8CXgFntaN4mZ5prWxiD90nML_uYVgro_Sz4yyPAXJ48"
-        />
-        <meta name="google-adsense-account" content="ca-pub-5003635462439536" />
-      </head>
-      <body>
-        <script
+    <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
           crossOrigin="anonymous"
-        ></script>
-      </body>
+          strategy="afterInteractive"
+        />
       <div className="home-page-bg">
+        <AnimatePresence>
+          <WelcomePopup
+            smallScreen={windowWidth <= 1200 ? true : false}
+          ></WelcomePopup>
+        </AnimatePresence>
         <div className="info-toggle">
           <RoundButton buttonFunc={toggleInfo}>
             <svg
@@ -272,8 +281,8 @@ export default function Home() {
               transition={{ duration: 0.1 }}
               className="stats-container"
             >
-              <h1>{t("made by Oleh Kulys")}</h1>
-              <p className="stat-name">attribution</p>
+              <h1>"made by Oleh Kulys"</h1>
+              <p className="stat-name">Attribution</p>
               <a
                 href="https://www.flaticon.com/free-icons/tomato"
                 title="tomato icons"
@@ -357,7 +366,9 @@ export default function Home() {
             <span style={{ color: "#ee4744" }}>{t("break")}</span>
           </p>
           {windowWidth <= 1200 && (
-            <p style={{ paddingTop: "10px" }}>{t("swipe_to_switch")}</p>
+            <p className="stat-name" style={{ paddingTop: "20px" }}>
+              {t("swipe_to_switch")}
+            </p>
           )}
         </div>
 
