@@ -21,19 +21,6 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  const titles = {
-    en: "Pomodoro Garden",
-    uk: "Помодоро Сад",
-    pl: "Pomidorowy Ogród",
-    de: "Pomodoro Garten",
-    fr: "Jardin Pomodoro",
-    it: "Giardino Pomodoro",
-    es: "Jardín Pomodoro",
-    tr: "Pomodoro Bahçesi",
-    cz: "Rajčatová Zahrada",
-    "zh-CN": "番茄花园",
-  };
-
   const descriptions = {
     en: "Boost your productivity with a fun Pomodoro technique timer that grows tomatoes as you work!",
     uk: "Підвищуйте продуктивність з веселим таймером за технікою Помодоро, що вирощує помідори поки ви працюєте!",
@@ -48,7 +35,7 @@ export default async function LocaleLayout({
   };
 
   const metadata = {
-    title: titles[locale as keyof typeof titles] || "Pomodoro Garden",
+    title:  "Pomodoro Garden",
     description:
       descriptions[locale as keyof typeof descriptions] || descriptions.en,
   };
