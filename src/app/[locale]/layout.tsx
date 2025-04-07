@@ -35,7 +35,7 @@ export default async function LocaleLayout({
   };
 
   const metadata = {
-    title:  "Pomodoro Garden",
+    title: "Pomodoro Garden",
     description:
       descriptions[locale as keyof typeof descriptions] || descriptions.en,
   };
@@ -44,6 +44,19 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16919679413"
+        />
+        <Script id="google-ads">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-16919679413');
+  `}
+        </Script>
+
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5003635462439536"
