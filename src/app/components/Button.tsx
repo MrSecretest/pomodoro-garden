@@ -1,14 +1,18 @@
-import "./Buttons-style.css"
+import "./Buttons-style.css";
 interface ButtonProps {
-    buttonText: string,
-    buttonFunc?: () => void,
+  buttonText: string;
+  buttonFunc?: () => void;
 }
-export default function Button({buttonText, buttonFunc} : ButtonProps){
-    return(
-        <>
-            <div className="button-container" onClick={buttonFunc}>
-                <p>{buttonText}</p>
-            </div>
-        </>
-    )
+export default function Button({ buttonText, buttonFunc }: ButtonProps) {
+  return (
+    <>
+      <div
+        data-testid="button"
+        className="button-container"
+        onClick={buttonFunc}
+      >
+        <p data-testid="button-text">{buttonText}</p>
+      </div>
+    </>
+  );
 }

@@ -3,21 +3,14 @@
 import { useState, useEffect } from "react";
 import "./Timer-style.css";
 import { motion } from "framer-motion";
-import { style } from "framer-motion/client";
 
 interface CountdownCircleProps {
   timeLeft: number;
-  timerIsActive: boolean;
-  toggleTimer: () => void;
-  onComplete: () => void;
   phase: number;
 }
 
 export default function CountdownCircle({
   timeLeft,
-  timerIsActive,
-  toggleTimer,
-  onComplete,
   phase,
 }: CountdownCircleProps) {
   const workTime = 1500;
@@ -45,6 +38,7 @@ export default function CountdownCircle({
 
   return (
     <div
+      data-testid="timer"
       style={{
         height: "350px",
         width: "350px",

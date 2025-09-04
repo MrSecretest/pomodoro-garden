@@ -33,9 +33,9 @@ export default function Home() {
   const milestonesReached = useRef(new Set<number>());
   const [statsShow, setStatsShow] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
-  const [growCall, setGrowCall] = useState(false);
   const plantRefs = Array.from({ length: 4 }, () => createRef<PlantRef>());
   const [windowWidth, setWindowWidth] = useState<number>(0);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
@@ -398,13 +398,7 @@ export default function Home() {
               </AnimatePresence>
             </Reorder.Group>
           </div>
-          <CountdownCircle
-            phase={currentPhase}
-            timeLeft={timeLeft}
-            timerIsActive={timerIsActive}
-            toggleTimer={toggleTimer}
-            onComplete={onComplete}
-          />
+          <CountdownCircle phase={currentPhase} timeLeft={timeLeft} />
 
           <div className="tasks">
             <p>{t("finished_tasks")}</p>
